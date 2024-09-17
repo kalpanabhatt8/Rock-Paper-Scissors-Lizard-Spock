@@ -32,7 +32,7 @@ option.forEach((option) => {
 
 
 let houseOption = (selectedId) => {
-    let houseOptions = ["Scissors", "Paper", "Rock"]
+    let houseOptions = ["Scissors", "Paper", "Rock", "Lizard", "Spock"]
     let housePickIndex = Math.floor(Math.random() * 3)
     let housePick = houseOptions[housePickIndex]
     console.log(housePick, "house picked")
@@ -128,9 +128,15 @@ let checkWinner = (selectedId) => {
         if (selectedId === "Rock") {
             userWinner = houseSelectedId === "Scissors" ? true : false
         } else if (selectedId === "Paper") {
-            userWinner = houseSelectedId === "Rock" ? true : false
+            userWinner = houseSelectedId === "Rock" || houseSelectedId === "Spock" ? true : false
         } else if (selectedId === "Scissors") {
-            userWinner = houseSelectedId === "Paper" ? true : false
+            userWinner = houseSelectedId === "Paper" || houseSelectedId === "Lizard" ? true : false
+        }
+        else if (selectedId === "Lizard") {
+            userWinner = houseSelectedId === "Spock" || houseSelectedId === "Paper" ? true : false
+        }
+        else if (selectedId === "Spock") {
+            userWinner = houseSelectedId === "Scissors" || houseSelectedId === "Rock" ? true : false
         }
         console.log(userWinner, selectedId, houseSelectedId)
         showWinner(userWinner, selectedId, houseSelectedId)
@@ -140,6 +146,7 @@ let checkWinner = (selectedId) => {
         playAgainDiv.classList.remove("hide")
         playAgain.classList.remove('hide')
         playAgain2.classList.remove('hide')
+
     }, 2000);
 
 }
